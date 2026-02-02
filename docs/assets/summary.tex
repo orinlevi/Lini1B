@@ -1,0 +1,500 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{article}
+
+% Hebrew support
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{hebrew}
+\setotherlanguage{english}
+\setmainfont{David CLM}
+\newfontfamily\hebrewfont{David CLM}
+
+% Math packages
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+
+% Page layout
+\usepackage[margin=2cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{אלגברה לינארית 1ב - סיכום}
+\lhead{\thepage}
+
+% Colors and boxes
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,skins,breakable}
+
+% Define theorem environments
+\newtcbtheorem[number within=section]{definition}{הגדרה}{
+  colback=blue!5,
+  colframe=blue!75!black,
+  fonttitle=\bfseries,
+  breakable
+}{def}
+
+\newtcbtheorem[number within=section]{theorem}{משפט}{
+  colback=green!5,
+  colframe=green!50!black,
+  fonttitle=\bfseries,
+  breakable
+}{thm}
+
+\newtcbtheorem[number within=section]{example}{דוגמה}{
+  colback=yellow!5,
+  colframe=yellow!50!black,
+  fonttitle=\bfseries,
+  breakable
+}{ex}
+
+% Title
+\title{\textbf{אלגברה לינארית 1ב}\\[0.5cm]\large סיכום מקיף לקורס}
+\author{אוניברסיטת תל אביב}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{מערכות משוואות לינאריות}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{מערכת משוואות לינארית}{}
+מערכת של $m$ משוואות ב-$n$ נעלמים מעל שדה $F$:
+\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
+\vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+\end{cases}
+\]
+\end{definition}
+
+\subsection{פעולות שורה אלמנטריות}
+שלוש פעולות ששומרות על קבוצת הפתרונות:
+\begin{enumerate}
+    \item \textbf{החלפת שורות:} $R_i \leftrightarrow R_j$
+    \item \textbf{כפל בסקלר:} $R_i \to c \cdot R_i$ כאשר $c \neq 0$
+    \item \textbf{חיבור כפולה:} $R_i \to R_i + c \cdot R_j$
+\end{enumerate}
+
+\subsection{צורה מדורגת}
+\begin{definition}{מטריצה מדורגת}{}
+מטריצה היא \textbf{מדורגת} אם:
+\begin{enumerate}
+    \item שורות אפסים נמצאות מתחת לשורות שאינן אפסים
+    \item האיבר הפותח בכל שורה נמצא מימין לאיבר הפותח של השורה שמעליה
+\end{enumerate}
+\end{definition}
+
+\subsection{סוגי פתרונות}
+\begin{theorem}{מספר פתרונות}{}
+למערכת לא-הומוגנית יש בדיוק אחת משלוש אפשרויות:
+\begin{itemize}
+    \item \textbf{אין פתרון} - יש שורת סתירה
+    \item \textbf{פתרון יחיד} - אין משתנים חופשיים
+    \item \textbf{אינסוף פתרונות} - יש משתנים חופשיים
+\end{itemize}
+\end{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{מרחבים וקטוריים}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{מרחב וקטורי}{}
+מרחב וקטורי מעל שדה $F$ הוא קבוצה $V$ עם פעולות חיבור וכפל בסקלר המקיימות 8 אקסיומות.
+\end{definition}
+
+\subsection{אקסיומות החיבור}
+\begin{enumerate}
+    \item \textbf{קומוטטיביות:} $u + v = v + u$
+    \item \textbf{אסוציאטיביות:} $(u + v) + w = u + (v + w)$
+    \item \textbf{איבר אדיש:} קיים $0 \in V$ כך ש-$v + 0 = v$
+    \item \textbf{איבר נגדי:} לכל $v$ קיים $-v$ כך ש-$v + (-v) = 0$
+\end{enumerate}
+
+\subsection{אקסיומות הכפל בסקלר}
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \item \textbf{דיסטריבוטיביות על וקטורים:} $\alpha(u + v) = \alpha u + \alpha v$
+    \item \textbf{דיסטריבוטיביות על סקלרים:} $(\alpha + \beta)v = \alpha v + \beta v$
+    \item \textbf{אסוציאטיביות מעורבת:} $\alpha(\beta v) = (\alpha\beta)v$
+    \item \textbf{כפל ב-1:} $1 \cdot v = v$
+\end{enumerate}
+
+\subsection{תת-מרחב}
+\begin{theorem}{קריטריון לתת-מרחב}{}
+$W \subseteq V$ היא תת-מרחב אם ורק אם:
+\begin{enumerate}
+    \item $W \neq \emptyset$ (בדרך כלל מראים $0 \in W$)
+    \item \textbf{סגירות לחיבור:} $u, v \in W \Rightarrow u + v \in W$
+    \item \textbf{סגירות לכפל בסקלר:} $\alpha \in F, v \in W \Rightarrow \alpha v \in W$
+\end{enumerate}
+\end{theorem}
+
+\subsection{סכום וחיתוך}
+\begin{definition}{סכום תתי מרחבים}{}
+\[ W_1 + W_2 = \{ w_1 + w_2 : w_1 \in W_1, w_2 \in W_2 \} \]
+\end{definition}
+
+\begin{definition}{סכום ישר}{}
+הסכום $W_1 + W_2$ הוא \textbf{סכום ישר} ($W_1 \oplus W_2$) אם:
+\[ W_1 \cap W_2 = \{0\} \]
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{תלות לינארית, בסיס ומימד}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{צירוף לינארי}
+\begin{definition}{צירוף לינארי}{}
+יהיו $v_1, \ldots, v_n \in V$. צירוף לינארי שלהם:
+\[ \alpha_1 v_1 + \alpha_2 v_2 + \cdots + \alpha_n v_n \]
+כאשר $\alpha_i \in F$.
+\end{definition}
+
+\subsection{תלות לינארית}
+\begin{definition}{תלות לינארית}{}
+קבוצה $\{v_1, \ldots, v_n\}$ \textbf{תלויה לינארית} אם קיימים $\alpha_1, \ldots, \alpha_n \in F$, \textbf{לא כולם אפס}, כך ש:
+\[ \alpha_1 v_1 + \cdots + \alpha_n v_n = 0 \]
+\end{definition}
+
+\subsection{פרישה}
+\begin{definition}{פרישה (Span)}{}
+\[ \text{Span}\{v_1, \ldots, v_n\} = \{ \alpha_1 v_1 + \cdots + \alpha_n v_n : \alpha_i \in F \} \]
+\end{definition}
+
+\subsection{בסיס ומימד}
+\begin{definition}{בסיס}{}
+קבוצה $B = \{v_1, \ldots, v_n\}$ היא \textbf{בסיס} של $V$ אם:
+\begin{enumerate}
+    \item $B$ בלתי תלויה לינארית
+    \item $B$ פורשת את $V$
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}{משפט שטיינץ}{}
+לכל שני בסיסים של $V$ יש אותו מספר איברים. מספר זה נקרא \textbf{המימד} של $V$: $\dim(V)$
+\end{theorem}
+
+\subsection{נוסחת המימדים}
+\begin{tcolorbox}[colback=purple!5,colframe=purple!75!black,title=\textbf{נוסחת המימדים לסכום}]
+\[ \dim(W_1 + W_2) = \dim(W_1) + \dim(W_2) - \dim(W_1 \cap W_2) \]
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{העתקות לינאריות}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{העתקה לינארית}{}
+$T: V \to W$ היא העתקה לינארית אם לכל $u, v \in V$ ולכל $\alpha \in F$:
+\begin{enumerate}
+    \item $T(u + v) = T(u) + T(v)$
+    \item $T(\alpha v) = \alpha T(v)$
+\end{enumerate}
+\end{definition}
+
+\subsection{גרעין ותמונה}
+\begin{definition}{גרעין ותמונה}{}
+\begin{align*}
+\ker(T) &= \{ v \in V : T(v) = 0 \} \\
+\text{Im}(T) &= \{ T(v) : v \in V \}
+\end{align*}
+\end{definition}
+
+\begin{theorem}{משפט המימדים}{}
+\[ \dim(V) = \dim(\ker(T)) + \dim(\text{Im}(T)) \]
+\end{theorem}
+
+\subsection{חד-חד-ערכיות ועל}
+\begin{theorem}{}{}
+יהי $T: V \to W$ העתקה לינארית:
+\begin{itemize}
+    \item $T$ חח"ע $\Leftrightarrow \ker(T) = \{0\}$
+    \item $T$ על $\Leftrightarrow \text{Im}(T) = W$
+\end{itemize}
+\end{theorem}
+
+\subsection{מטריצה מייצגת}
+\begin{definition}{מטריצה מייצגת}{}
+יהי $T: V \to W$, $B$ בסיס של $V$, $C$ בסיס של $W$.
+
+המטריצה המייצגת $[T]_B^C$: העמודה ה-$j$ היא וקטור הקואורדינטות של $T(v_j)$ לפי $C$.
+\end{definition}
+
+\begin{tcolorbox}[colback=purple!5,colframe=purple!75!black,title=\textbf{נוסחת הקשר}]
+\[ [T(v)]_C = [T]_B^C \cdot [v]_B \]
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{דטרמיננטות}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{דטרמיננטות של מטריצות קטנות}
+\begin{tcolorbox}[colback=purple!5,colframe=purple!75!black,title=\textbf{מטריצה $2 \times 2$}]
+\[ \det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc \]
+\end{tcolorbox}
+
+\subsection{תכונות הדטרמיננטה}
+\begin{theorem}{תכונות פעולות שורה}{}
+\begin{itemize}
+    \item החלפת שתי שורות: כפל ב-$(-1)$
+    \item כפל שורה בסקלר $\alpha$: כפל ב-$\alpha$
+    \item הוספת כפולה של שורה לאחרת: \textbf{לא משתנה}
+\end{itemize}
+\end{theorem}
+
+\subsection{משפטים חשובים}
+\begin{theorem}{כפליות}{}
+\[ \det(AB) = \det(A) \cdot \det(B) \]
+\end{theorem}
+
+\begin{theorem}{שחלוף}{}
+\[ \det(A^T) = \det(A) \]
+\end{theorem}
+
+\begin{theorem}{הפיכות}{}
+\[ A \text{ הפיכה} \Leftrightarrow \det(A) \neq 0 \]
+ואם $A$ הפיכה:
+\[ \det(A^{-1}) = \frac{1}{\det(A)} \]
+\end{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{מטריצות דומות ושינוי בסיס}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{מטריצת מעבר}
+\begin{definition}{מטריצת מעבר}{}
+יהיו $B = \{v_1, \ldots, v_n\}$ ו-$C = \{u_1, \ldots, u_n\}$ שני בסיסים של $V$.
+
+\textbf{מטריצת המעבר} $P_{C \leftarrow B}$ היא המטריצה שעמודותיה הן וקטורי הקואורדינטות של איברי $B$ לפי $C$:
+\[ [P_{C \leftarrow B}]_j = [v_j]_C \]
+\end{definition}
+
+\begin{tcolorbox}[colback=purple!5,colframe=purple!75!black,title=\textbf{נוסחת שינוי בסיס}]
+\[ [v]_C = P_{C \leftarrow B} \cdot [v]_B \]
+\end{tcolorbox}
+
+\begin{theorem}{תכונות מטריצת מעבר}{}
+\begin{enumerate}
+    \item $P_{C \leftarrow B}$ הפיכה, ו-$P_{C \leftarrow B}^{-1} = P_{B \leftarrow C}$
+    \item $P_{D \leftarrow B} = P_{D \leftarrow C} \cdot P_{C \leftarrow B}$
+\end{enumerate}
+\end{theorem}
+
+\subsection{מטריצות דומות}
+\begin{definition}{מטריצות דומות}{}
+שתי מטריצות $A, B \in M_n(F)$ נקראות \textbf{דומות} אם קיימת מטריצה הפיכה $P$ כך ש:
+\[ B = P^{-1}AP \]
+\end{definition}
+
+\begin{theorem}{שימור תחת דמיון}{}
+אם $A$ ו-$B$ דומות, אז:
+\begin{enumerate}
+    \item $\det(A) = \det(B)$
+    \item $\text{tr}(A) = \text{tr}(B)$
+    \item $\text{rank}(A) = \text{rank}(B)$
+    \item להן אותו פולינום אופייני
+    \item להן אותם ערכים עצמיים
+\end{enumerate}
+\end{theorem}
+
+\begin{tcolorbox}[colback=purple!5,colframe=purple!75!black,title=\textbf{קשר בין מטריצות מייצגות}]
+אם $T: V \to V$ ו-$B, C$ בסיסים של $V$, אז:
+\[ [T]_C = P_{C \leftarrow B}^{-1} \cdot [T]_B \cdot P_{C \leftarrow B} \]
+כלומר: מטריצות מייצגות של אותה העתקה הן דומות!
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{מרחבי שורות ועמודות}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{מרחב העמודות}{}
+\textbf{מרחב העמודות} של מטריצה $A \in M_{m \times n}(F)$ הוא תת-המרחב של $F^m$ הנפרש ע"י עמודות $A$:
+\[ C(A) = \text{Span}\{A_1, A_2, \ldots, A_n\} \]
+כאשר $A_j$ היא העמודה ה-$j$ של $A$.
+\end{definition}
+
+\begin{definition}{מרחב השורות}{}
+\textbf{מרחב השורות} של מטריצה $A$ הוא תת-המרחב של $F^n$ הנפרש ע"י שורות $A$:
+\[ R(A) = \text{Span}\{R_1, R_2, \ldots, R_m\} = C(A^T) \]
+\end{definition}
+
+\begin{theorem}{דרגת מטריצה}{}
+\[ \text{rank}(A) = \dim(C(A)) = \dim(R(A)) \]
+כלומר: מימד מרחב העמודות שווה למימד מרחב השורות!
+\end{theorem}
+
+\begin{theorem}{קשר לפעולות שורה}{}
+פעולות שורה אלמנטריות:
+\begin{enumerate}
+    \item \textbf{משמרות} את מרחב השורות
+    \item \textbf{לא בהכרח משמרות} את מרחב העמודות
+    \item \textbf{משמרות} את יחסי התלות הלינארית בין העמודות
+\end{enumerate}
+\end{theorem}
+
+\begin{tcolorbox}[colback=yellow!5,colframe=yellow!50!black,title=\textbf{מציאת בסיס}]
+\textbf{בסיס למרחב השורות:} השורות השונות מאפס בצורה המדורגת.
+
+\textbf{בסיס למרחב העמודות:} העמודות של $A$ המקורית במיקומי הפיבוטים.
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{כלל קרמר}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{theorem}{כלל קרמר}{}
+תהי $Ax = b$ מערכת משוואות כאשר $A \in M_n(F)$ הפיכה.
+
+אזי הפתרון היחיד הוא:
+\[ x_i = \frac{\det(A_i)}{\det(A)} \]
+כאשר $A_i$ היא המטריצה המתקבלת מ-$A$ ע"י החלפת העמודה ה-$i$ בוקטור $b$.
+\end{theorem}
+
+\begin{example}{שימוש בכלל קרמר}{}
+עבור המערכת $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} e \\ f \end{pmatrix}$:
+\[ x = \frac{\det\begin{pmatrix} e & b \\ f & d \end{pmatrix}}{\det(A)} = \frac{ed - bf}{ad - bc} \]
+\[ y = \frac{\det\begin{pmatrix} a & e \\ c & f \end{pmatrix}}{\det(A)} = \frac{af - ec}{ad - bc} \]
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{ערכים עצמיים ולכסון}
+\textit{(נושא זה נלמד בלינארית 2ב)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{ערך עצמי ווקטור עצמי}{}
+סקלר $\lambda \in F$ הוא \textbf{ערך עצמי} של מטריצה $A$ אם קיים וקטור $v \neq 0$ כך ש:
+\[ Av = \lambda v \]
+הוקטור $v \neq 0$ נקרא \textbf{וקטור עצמי} השייך לערך העצמי $\lambda$.
+\end{definition}
+
+\subsection{מציאת ערכים עצמיים}
+\begin{theorem}{הפולינום האופייני}{}
+$\lambda$ ערך עצמי של $A$ אם ורק אם:
+\[ \det(A - \lambda I) = 0 \]
+הפולינום $p_A(\lambda) = \det(A - \lambda I)$ נקרא \textbf{הפולינום האופייני}.
+\end{theorem}
+
+\subsection{מרחב עצמי וריבויים}
+\begin{definition}{מרחב עצמי}{}
+המרחב העצמי של $\lambda$ הוא:
+\[ V_\lambda = \ker(A - \lambda I) = \{ v \in V : Av = \lambda v \} \]
+\end{definition}
+
+\begin{definition}{ריבויים}{}
+\begin{itemize}
+    \item \textbf{ריבוי אלגברי:} מספר הפעמים ש-$\lambda$ מופיע כשורש של הפולינום האופייני
+    \item \textbf{ריבוי גיאומטרי:} $\dim(V_\lambda) = \dim(\ker(A - \lambda I))$
+\end{itemize}
+\end{definition}
+
+\begin{theorem}{יחס בין הריבויים}{}
+לכל ערך עצמי $\lambda$:
+\[ 1 \leq \text{ריבוי גיאומטרי} \leq \text{ריבוי אלגברי} \]
+\end{theorem}
+
+\subsection{לכסון}
+\begin{definition}{מטריצה לכסינה}{}
+מטריצה $A$ נקראת \textbf{לכסינה} אם קיימת מטריצה הפיכה $P$ ומטריצה אלכסונית $D$ כך ש:
+\[ A = PDP^{-1} \quad \text{או באופן שקול:} \quad D = P^{-1}AP \]
+\end{definition}
+
+\begin{theorem}{תנאים ללכסינות}{}
+\begin{itemize}
+    \item $A \in M_n(F)$ לכסינה $\Leftrightarrow$ יש לה $n$ וקטורים עצמיים בלתי תלויים לינארית
+    \item \textbf{תנאי מספיק:} אם ל-$A$ יש $n$ ערכים עצמיים \textbf{שונים}, אז $A$ לכסינה
+    \item $A$ לכסינה $\Leftrightarrow$ לכל ע"ע: ריבוי גיאומטרי = ריבוי אלגברי
+\end{itemize}
+\end{theorem}
+
+\begin{tcolorbox}[colback=purple!5,colframe=purple!75!black,title=\textbf{תכונות מטריצות לכסינות}]
+אם $A = PDP^{-1}$ אז:
+\begin{itemize}
+    \item $A^k = PD^kP^{-1}$
+    \item $\det(A)$ = מכפלת הערכים העצמיים
+    \item $\text{tr}(A)$ = סכום הערכים העצמיים
+\end{itemize}
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{מכפלה פנימית}
+\textit{(נושא זה נלמד בלינארית 2ב)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}{מכפלה פנימית}{}
+מכפלה פנימית על מרחב וקטורי $V$ מעל $\mathbb{R}$ היא פונקציה $\langle \cdot, \cdot \rangle : V \times V \to \mathbb{R}$ המקיימת:
+\begin{enumerate}
+    \item \textbf{לינאריות בארגומנט הראשון:} $\langle u + v, w \rangle = \langle u, w \rangle + \langle v, w \rangle$ ו-$\langle \alpha u, v \rangle = \alpha \langle u, v \rangle$
+    \item \textbf{סימטריה:} $\langle u, v \rangle = \langle v, u \rangle$
+    \item \textbf{חיוביות:} $\langle v, v \rangle \geq 0$, ושוויון אם"ם $v = 0$
+\end{enumerate}
+\end{definition}
+
+\subsection{נורמה ואי-שוויונות}
+\begin{definition}{נורמה מושרית}{}
+\[ \|v\| = \sqrt{\langle v, v \rangle} \]
+\end{definition}
+
+\begin{tcolorbox}[colback=purple!5,colframe=purple!75!black,title=\textbf{אי-שוויון קושי-שוורץ}]
+\[ |\langle u, v \rangle| \leq \|u\| \cdot \|v\| \]
+שוויון מתקיים אם"ם $u, v$ תלויים לינארית.
+\end{tcolorbox}
+
+\subsection{אורתוגונליות}
+\begin{definition}{אורתוגונליות}{}
+\begin{itemize}
+    \item $u \perp v$ (אורתוגונליים) אם $\langle u, v \rangle = 0$
+    \item קבוצה \textbf{אורתוגונלית:} $\langle v_i, v_j \rangle = 0$ לכל $i \neq j$
+    \item קבוצה \textbf{אורתונורמלית:} אורתוגונלית וגם $\|v_i\| = 1$ לכל $i$
+\end{itemize}
+\end{definition}
+
+\begin{definition}{משלים אורתוגונלי}{}
+\[ W^\perp = \{ v \in V : \langle v, w \rangle = 0 \; \forall w \in W \} \]
+\end{definition}
+
+\begin{theorem}{}{}
+$V = W \oplus W^\perp$ ולכן $\dim(W) + \dim(W^\perp) = \dim(V)$
+\end{theorem}
+
+\subsection{תהליך גרם-שמידט}
+\begin{tcolorbox}[colback=yellow!5,colframe=yellow!50!black,title=\textbf{אלגוריתם גרם-שמידט}]
+נתונה קבוצה $\{v_1, \ldots, v_n\}$ בלתי תלויה.
+
+\textbf{שלב 1 - אורתוגונליזציה:}
+\[ u_1 = v_1, \quad u_k = v_k - \sum_{j=1}^{k-1} \frac{\langle v_k, u_j \rangle}{\langle u_j, u_j \rangle} u_j \]
+
+\textbf{שלב 2 - נרמול:}
+\[ e_k = \frac{u_k}{\|u_k\|} \]
+\end{tcolorbox}
+
+\subsection{הטלה אורתוגונלית}
+\begin{tcolorbox}[colback=purple!5,colframe=purple!75!black,title=\textbf{נוסחאות הטלה}]
+\textbf{הטלה על וקטור:}
+\[ \text{proj}_u(v) = \frac{\langle v, u \rangle}{\langle u, u \rangle} u \]
+
+\textbf{הטלה על תת-מרחב} (עם בסיס אורתונורמלי $\{e_1, \ldots, e_k\}$):
+\[ \text{proj}_W(v) = \sum_{i=1}^{k} \langle v, e_i \rangle e_i \]
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{נוסחאות חשובות - סיכום}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tcolorbox}[colback=gray!5,colframe=gray!75!black,title=\textbf{נוסחאות מרכזיות}]
+\begin{align}
+\text{נוסחת המימדים לסכום:} \quad & \dim(W_1 + W_2) = \dim(W_1) + \dim(W_2) - \dim(W_1 \cap W_2) \\[5pt]
+\text{משפט המימדים להעתקות:} \quad & \dim(V) = \dim(\ker(T)) + \dim(\text{Im}(T)) \\[5pt]
+\text{דרגת מטריצה:} \quad & \text{rank}(A) = \dim(\text{Im}(T_A)) \\[5pt]
+\text{כפליות דטרמיננטה:} \quad & \det(AB) = \det(A) \cdot \det(B) \\[5pt]
+\text{הרכבת העתקות:} \quad & [S \circ T]_B^D = [S]_C^D \cdot [T]_B^C \\[5pt]
+\text{אי-שוויון קושי-שוורץ:} \quad & |\langle u, v \rangle| \leq \|u\| \cdot \|v\|
+\end{align}
+\end{tcolorbox}
+
+\end{document}

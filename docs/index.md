@@ -9,7 +9,7 @@
 
 <div class="stats-row">
   <div class="stat-item">
-    <div class="stat-number">6</div>
+    <div class="stat-number">7</div>
     <div class="stat-label">נושאים</div>
   </div>
   <div class="stat-item">
@@ -28,26 +28,33 @@
 
 <div class="card-grid" markdown>
 
+<div class="card card-green" markdown>
+
+### יסודות
+- [מערכות משוואות לינאריות](notes/linear_systems.md)
+- [מרחבים וקטוריים](notes/vector_spaces.md)
+
+</div>
+
 <div class="card card-purple" markdown>
 
-### מרחבים וקטוריים
-- [מרחבים וקטוריים](notes/vector_spaces.md)
+### בסיס ומימד
 - [תלות ואי-תלות לינארית](notes/linear_dependence.md)
+- [העתקות לינאריות](notes/linear_transformations.md)
 
 </div>
 
 <div class="card card-indigo" markdown>
 
-### העתקות ומטריצות
-- [העתקות לינאריות](notes/linear_transformations.md)
+### דטרמיננטות ולכסון
 - [דטרמיננטות](notes/determinants.md)
+- [ערכים עצמיים ולכסון](notes/eigenvalues.md)
 
 </div>
 
 <div class="card card-blue" markdown>
 
-### לכסון ומכפלה פנימית
-- [ערכים עצמיים ולכסון](notes/eigenvalues.md)
+### מכפלה פנימית
 - [מכפלה פנימית](notes/inner_product.md)
 
 </div>
@@ -60,6 +67,7 @@
 
 | נושא | תיאור |
 |------|-------|
+| **מערכות משוואות לינאריות** | דירוג מטריצות, צורה קנונית, פתרון מערכות |
 | **מרחבים וקטוריים** | הגדרות, תתי-מרחבים, צירופים לינאריים |
 | **תלות ואי-תלות לינארית** | קבוצות בלתי תלויות, בסיס ומימד |
 | **העתקות לינאריות** | הגדרה, גרעין ותמונה, מטריצה מייצגת |

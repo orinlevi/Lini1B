@@ -69,6 +69,7 @@ nav:
   - בית: index.md
   - סיכומים:
     - נושאים:
+      - מערכות משוואות לינאריות: notes/linear_systems.md
       - מרחבים וקטוריים: notes/vector_spaces.md
       - תלות ואי-תלות לינארית: notes/linear_dependence.md
       - העתקות לינאריות: notes/linear_transformations.md
