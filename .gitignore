@@ -19,3 +19,11 @@ venv/
 .vscode/
 .idea/
 *.code-workspace
+
+# LaTeX auxiliary files
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+docs/assets/summary.pdf
