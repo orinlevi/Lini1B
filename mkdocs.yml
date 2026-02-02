@@ -68,13 +68,10 @@ extra_javascript:
 nav:
   - בית: index.md
   - סיכומים:
-    - נושאים:
-      - מערכות משוואות לינאריות: notes/linear_systems.md
-      - מרחבים וקטוריים: notes/vector_spaces.md
-      - תלות ואי-תלות לינארית: notes/linear_dependence.md
-      - העתקות לינאריות: notes/linear_transformations.md
-      - דטרמיננטות: notes/determinants.md
-      - ערכים עצמיים ולכסון: notes/eigenvalues.md
-      - מכפלה פנימית: notes/inner_product.md
-  - תרגולים:
-    - תרגול 1: units/rec01.md
+    - מערכות משוואות לינאריות: notes/linear_systems.md
+    - מרחבים וקטוריים: notes/vector_spaces.md
+    - תלות ואי-תלות לינארית: notes/linear_dependence.md
+    - העתקות לינאריות: notes/linear_transformations.md
+    - דטרמיננטות: notes/determinants.md
+    - ערכים עצמיים ולכסון (לינארית 2ב): notes/eigenvalues.md
+    - מכפלה פנימית (לינארית 2ב): notes/inner_product.md
